@@ -1,3 +1,6 @@
 {{ partial "docs/inject/toc-before" . }}
-{{ .TableOfContents }}
+{{ $startLevel := or .Params.hbstartp .Site.Params.hbstarts }}
+{{ $endLevel := 6 }}
+{{ $ordered := or .Params.hbordp .Site.Params.hbords  }}
+{{ .Fragments.ToHTML $startLevel $endLevel $ordered }}
 {{ partial "docs/inject/toc-after" . }}
