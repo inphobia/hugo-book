@@ -2,11 +2,11 @@
 {{ $translations := dict }}
 {{ if (eq $bookTranslatedOnly false ) }}
   {{ range .Site.Home.Translations }}
-    {{ $translations = merge $translations (dict .Language.Lang .) }}
+    {{ $translations = merge $translations (dict .Language.Name .) }}
   {{ end }}
 {{ end }}
 {{ range .Translations }}
-  {{ $translations = merge $translations (dict .Language.Lang .) }}
+  {{ $translations = merge $translations (dict .Language.Name .) }}
 {{ end }}
 
 <ul class="book-languages">
@@ -21,7 +21,7 @@
     </label>
 
     <ul>
-      {{ range .Site.Languages }}{{ with index $translations .Lang }}
+      {{ range .Site.Languages }}{{ with index $translations .Name }}
       <li>
         <a href="{{ cond hugo.IsMultihost .Permalink .RelPermalink }}" class="flex flex-auto">
           {{ .Language.Label }}
